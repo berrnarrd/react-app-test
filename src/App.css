@@ -1,0 +1,446 @@
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  background-color: #F4F6F5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  position: relative;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-grow: 1;
+  max-height: calc(100vh - 270px);
+}
+
+.timer-container {
+  border: none;
+  border-radius: 16px;
+  padding: 10px;
+  background-color: #CDCFCE;
+  margin-bottom: 20px;
+}
+
+.timer-container.clocked-in {
+  background-color: #66CA98;
+  color: #FFFFFF;
+}
+
+.timer-container.on-break {
+  background-color: #FF6C52;
+  color: #FFFFFF;
+}
+
+.clock-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.clock-in-btn,
+.callback-in-btn {
+  border: none;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 10px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.clock-in-btn {
+  background-color: #66CA98;
+}
+
+.clock-in-btn:hover {
+  background-color: #45a049;
+}
+
+.clock-in-btn:active {
+  background-color: #45a049;
+  transform: scale(0.95);
+}
+
+.callback-in-btn {
+  background-color: #6295E2;
+}
+
+.callback-in-btn:hover {
+  background-color: #4077c7;
+}
+
+.callback-in-btn:active {
+  background-color: #4077c7;
+  transform: scale(0.95);
+}
+
+.bottom-section {
+  margin-top: auto;
+  margin-bottom: 80px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.action-buttons-row {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.action-buttons-row.on-break .take-lunch-btn {
+  display: none;
+}
+
+.take-lunch-btn,
+.clock-out-btn,
+.end-lunch-btn,
+.add-notes-btn,
+.start-travel-btn,
+.callback-out-btn {
+  border: none;
+  border-radius: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 1em;
+  width: 120px;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 5px;
+}
+
+.action-buttons-row.on-break .clock-out-btn,
+.action-buttons-row.on-break .callback-out-btn {
+  width: 120px;
+}
+
+.clock-out-btn,
+.callback-out-btn {
+  background-color: #66CA98;
+}
+
+.take-lunch-btn {
+  background-color: #FF6C52;
+}
+
+.end-lunch-btn {
+  background-color: #FF6C52;
+}
+
+.add-notes-btn {
+  color: #F6C25D;
+  background-color: #FFF7DC;
+}
+
+.start-travel-btn {
+  background-color: #6295E2;
+}
+
+.add-note-btn {
+  background-color: #66CA98;
+  color: #FFFFFF;
+}
+
+.cancel-notes-btn {
+  background-color: #FF6C52;
+  color: #FFFFFF;
+}
+
+.timer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.timer-status {
+  color: #FFFFFF;
+  font-size: 1.2em;
+}
+
+.timer {
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time {
+  font-size: 2em;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-header {
+  font-size: 1.5em;
+  background-color: #F4F6F5;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1C1F1E;
+}
+
+.actions-header {
+  font-size: 1.5em;
+  background-color: #F4F6F5;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1C1F1E;
+}
+
+.timeline-wrapper {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  padding-right: 10px;
+}
+
+.timeline-entry {
+  background-color: #EFF2F1;
+  border-radius: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.clock-in-time,
+.lunch-start-time,
+.lunch-end-time {
+  margin-bottom: 5px;
+}
+
+.timeline-label {
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+.clock-out-btn.full-width,
+.callback-out-btn.full-width {
+  width: 120px;
+}
+
+.add-notes-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  text-align: center;
+  max-width: 90%;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
+  font-style: normal;
+  color: #1C1F1E;
+}
+
+.notes-textarea {
+  font-weight: 500;
+  font-style: normal;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 0.9em;
+  border: 1px solid #1C1F1E;
+  border-radius: 4px;
+  resize: none;
+  overflow: auto;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .clock-in-btn,
+  .callback-in-btn {
+    width: 120px;
+    height: 120px;
+    font-size: 1.2em;
+    padding: 8px;
+  }
+
+  .time {
+    font-size: 2em;
+  }
+
+  .timer-status,
+  .timeline-header,
+  .actions-header {
+    font-size: 0.9em;
+  }
+
+  .take-lunch-btn,
+  .clock-out-btn,
+  .end-lunch-btn,
+  .add-notes-btn,
+  .start-travel-btn,
+  .callback-out-btn {
+    font-size: 0.9em;
+    width: 100px;
+    height: 40px;
+  }
+
+  .action-buttons-row.on-break .clock-out-btn,
+  .action-buttons-row.on-break .callback-out-btn {
+    width: 100px;
+  }
+
+  .clock-out-btn.full-width,
+  .callback-out-btn.full-width {
+    width: 100px;
+  }
+
+  .modal-buttons button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+    height: 40px;
+  }
+
+  .notes-textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    overflow: auto;
+  }
+
+  .timeline-entry .timeline-label {
+    font-size: 0.9em;
+    color: #1C1F1E;
+  }
+
+  .timeline-entry .lunch-start-time,
+  .timeline-entry .clock-in-time,
+  .timeline-entry .lunch-end-time,
+  .timeline-entry .notes-time,
+  .timeline-entry .notes-text {
+    font-size: 0.9em;
+    color: #1C1F1E;
+  }
+
+  .timeline-entry .notes-text {
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .modal-content {
+    max-width: 90%;
+  }
+}
